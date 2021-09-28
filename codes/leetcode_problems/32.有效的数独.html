@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+            var isValidSudoku = function(board) {
+                let rows = []
+                let cols = []
+                let boxes = []
+                for (let i = 0; i < 9; i++) {
+                    rows[i] = new Set();
+                    cols[i] = new Set();
+                    boxes[i] = new Set();
+                }
+
+
+            
+                for (let i=0; i<9;i++){
+                    for (let j=0;j<9;j++) {
+                        if (board[i][j] == '.') {
+                            continue;
+                        }
+                        let box_idx = Math.floor(i/3)*3+Math.floor(j/3);
+                        if (rows[i].has(board[i][j]) || cols[j].has(board[i][j]) || boxes[box_idx].has(board[i][j])) {
+                            return false;
+                        }
+                        rows[i].add(board[i][j]);
+                        cols[j].add(board[i][j]);
+                        boxes[box_idx].add(board[i][j]);
+                    }
+                        
+                }
+                return true;
+        };
+        board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]];
+        console.log(isValidSudoku(board));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

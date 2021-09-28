@@ -1,0 +1,17 @@
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        s_split = s.split(" ")
+        ans = ["" for _ in range(len(s_split))]
+        for item in s_split:
+            index = int(item[-1])-1
+            ans[index] = item[:-1]
+        return " ".join(ans)
+
+
+
+
+
+if __name__ == "__main__":
+    solution = Solution()
+    sentence = "is2 sentence4 This1 a3"
+    print(solution.sortSentence(sentence))

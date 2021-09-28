@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var allPathsSourceTarget = function (graph) {
+            let res = [];
+            let stack = [
+                [0]
+            ];
+            let n = graph.length;
+            while (stack.length != 0) {
+                let cur_path = stack.pop();
+                let cur_node = cur_path[cur_path.length - 1];
+                for (const node of graph[cur_node]) {
+                    if (node == n - 1) {
+                        res.push(cur_path.concat([node]));
+                    } else {
+                        stack.push(cur_path.concat([node]));
+                    }
+                }
+            }
+            return res;
+
+
+        };
+        console.log(allPathsSourceTarget([[1,2],[3],[3],[]]));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var findCheapestPrice = function (n, flights, src, dst, k) {
+            const INF = 10000 * 101 + 1;
+            let f = new Array(n).fill(INF);
+            f[src] = 0;
+            // let ans = INF;
+            for (let t = 1; t <= k + 1; ++t) {
+                let g = Array.from(f);
+                // const g = new Array(n).fill(INF);
+                for (const flight of flights) {
+                    let [j, i, cost] = flight;
+                    // const j = flight[0], i = flight[1], cost = flight[2];
+                    // g[i] = Math.min(g[i], f[j] + cost);
+                    f[i] = Math.min(f[i], g[j] + cost);
+                }
+                // f = g;
+                // ans = Math.min(ans, f[dst]);
+            }
+            return f[dst] == INF ? -1 : f[dst];
+        };
+        console.log(findCheapestPrice(3, [
+            [0, 1, 100],
+            [1, 2, 100],
+            [0, 2, 500]
+        ], 0, 2, 1));
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
