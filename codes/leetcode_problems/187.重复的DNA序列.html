@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var findRepeatedDnaSequences = function (s) {
+        let res = [];
+        let bin = new Map();
+        bin.set('A', 0);
+        bin.set('G', 1);
+        bin.set('C', 2);
+        bin.set('T', 3);
+        let h = 0;
+        let hash_dict = new Map();
+        let n = s.length;
+        if (n <= 10) {
+            return [];
+        }
+        for (let i = 0; i < n - 10 + 1; i++) {
+            if (i === 0) {
+                for (let ch of s.slice(i, i + 10)) {
+                    h = h << 2 | bin.get(ch);
+                }
+            } else {
+                h = (h << 2 | bin.get(s[i + 10 - 1])) & ((1 << 20) - 1);
+            }
+            hash_dict.set(h, (hash_dict.get(h) || 0) + 1);
+            if (hash_dict.get(h) === 2) {
+                res.push(s.slice(i, i + 10));
+            }
+
+        }
+        return res;
+    };
+    console.log(findRepeatedDnaSequences(
+        "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"));
+</script>
+
+</html>
