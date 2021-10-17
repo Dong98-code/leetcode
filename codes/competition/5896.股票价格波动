@@ -1,0 +1,44 @@
+class StockPrice:
+
+    def __init__(self):
+        self.data = {}
+        self.max_price = 0
+        self.min_price = 10 ** 9 + 1
+        self.max_timestamp = 0
+        self.min_timestamp = 0
+        self.newest = 0
+
+    def update(self, timestamp: int, price: int) -> None:
+        self.data[timestamp] = price
+        if timestamp > self.newest:
+            self.newest = timestamp
+            if price > self.max_price:
+                self.max_timestamp = timestamp
+                self.max_price = price
+            if price < self.min_price:
+                self.min_timestamp = timestamp
+                self.min_price = price
+
+        else:
+            if timestamp == self.min_timestamp:
+                # self.data[timestamp] = price
+                self.min_price = min(self.data.values())
+            if timestamp == self.max_timestamp:
+                # self.data[timestamp] = price
+                self.max_price = max(self.data.values())
+
+    def current(self) -> int:
+        return self.data[self.newest]
+
+    def maximum(self) -> int:
+        return self.max_price
+
+    def minimum(self) -> int:
+        return self.min_price
+
+# Your StockPrice object will be instantiated and called as such:
+obj = StockPrice()
+obj.update(1,10)
+obj.update(2,5)
+obj.current()
+obj.update(1,3)
