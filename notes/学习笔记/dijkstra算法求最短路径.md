@@ -53,6 +53,7 @@ dis[0,5,6,8,7]
 ## 最小堆优化
 ```python
 import time
+import  heapq
 def dijkstra(G,start):     ###dijkstra算法    
     INF = 999999999
  
@@ -85,4 +86,3 @@ def dijkstra(G,start):     ###dijkstra算法
     print('Dijkstra算法所用时间:',t4-t3)
     return dis,path
 ```
-
