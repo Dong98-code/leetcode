@@ -1,0 +1,108 @@
+## 390.消除游戏
+
+### 题目
+[390.消除游戏](https://leetcode-cn.com/problems/elimination-game/)
+
+<div class="content__1Y2H"><div class="notranslate"><p>列表 <code>arr</code> 由在范围 <code>[1, n]</code> 中的所有整数组成，并按严格递增排序。请你对 <code>arr</code> 应用下述算法：</p>
+
+<div class="original__bRMd">
+<div>
+<ul>
+	<li>从左到右，删除第一个数字，然后每隔一个数字删除一个，直到到达列表末尾。</li>
+	<li>重复上面的步骤，但这次是从右到左。也就是，删除最右侧的数字，然后剩下的数字每隔一个删除一个。</li>
+	<li>不断重复这两步，从左到右和从右到左交替进行，直到只剩下一个数字。</li>
+</ul>
+
+<p>给你整数 <code>n</code> ，返回 <code>arr</code> 最后剩下的数字。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre><strong>输入：</strong>n = 9
+<strong>输出：</strong>6
+<strong>解释：</strong>
+arr = [<strong><em>1</em></strong>, 2, <em><strong>3</strong></em>, 4, <em><strong>5</strong></em>, 6, <em><strong>7</strong></em>, 8, <em><strong>9</strong></em>]
+arr = [2, <em><strong>4</strong></em>, 6, <em><strong>8</strong></em>]
+arr = [<em><strong>2</strong></em>, 6]
+arr = [6]
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre><strong>输入：</strong>n = 1
+<strong>输出：</strong>1
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 10<sup>9</sup></code></li>
+</ul>
+</div>
+</div>
+</div></div>
+
+
+### 思路
+
+1. 数据范围为1e9 ，太大了，直接模拟肯定报错
+2. 简单模拟
+
+第一个数字， 我们只记录留在 队列中第一数字的原来的位置，或者说原来是多少；当剩余的数字<=1时，我们此时记录的第一个数字便是 留下来的数字。
+
+当从左往右 或者 从右往左且剩余的数字的个数为奇数时，此时的第一 数字会被删除，我们需要更新该参数：
+
+那么怎么更新呢？
+借助于一个步长 step： 当第一轮时，删除掉第一个数字， 之后新的数字便是原来的 +1
+第二轮，此时已经删除过一半数字了。step 变成2 
+依此类推‘
+使用while 循环。每次更新第一个数字；更新步长；更新剩余多少个数字；
+
+
+### 代码
+
+```python
+class Solution:
+    def lastRemaining(self, n: int) -> int:
+        flag = True  # 表示从左往右，反之
+        res = n
+        ans = 1
+        step = 1
+        while res > 1:
+            if flag or res % 2 == 1:
+                # 只有奇数或者 从左往右需要移动第一个数
+                ans += step
+            flag = not flag # 每次反转
+            step *= 2
+            res //= 2 # 剩下的 数组的长度
+        return ans
+```
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var lastRemaining = function(n) {
+    let ans = 1;
+    let step = 1;
+    let remain = n;
+    let flag = true;
+    while (remain > 1) {
+        if (flag || (remain % 2 == 1))  {
+            ans += step;
+        }
+        flag = !flag;
+        step *= 2;
+        remain = Math.floor(remain/2);
+    }
+    return ans;
+};
+```
+
+
+注意：
+js 中除法向下取整 使用Math
