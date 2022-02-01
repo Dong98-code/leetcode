@@ -1,0 +1,38 @@
+class Solution:
+    def subStrHash(self, s: str, power: int, mod: int, k: int, hashValue: int):
+        cur = 0
+        n = len(s)
+        s = s[::-1]
+        # for i in range(k):
+        #     cur = (cur * power % mod + ord(s[i]) - ord('a') + 1) % mod
+        # l,r = -1,-1
+        # if cur == hashValue:
+        #      l = 0
+        #      r = k
+        # n = len(s)
+        # for i in range(k,n):
+        #     cur = (((cur - ((ord(s[i - k]) - ord('a') + 1) * pow(power,k - 1,mod)) % mod) * power) % mod + ord(s[i]) - ord('a') + 1) % mod
+        #     if cur == hashValue:
+        #         l = i - k + 1
+        #         r = i + 1
+        # return s[l:r][::-1]
+        hash_codes = [0] * (n+1)
+        for i in range(n):
+            hash_codes[i+1] = (hash_codes[i] * power % modulo + (ord(s[i]) - ord('a') +1)) % modulo
+
+        for i in range()
+
+# 作者：ZhonghaoWang
+# 链接：https://leetcode-cn.com/problems/find-substring-with-given-hash-value/solution/py3-fan-xiang-rksuan-fa-by-zhonghaowang-pm0v/
+# 来源：力扣（LeetCode）
+# 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+sol = Solution()
+s = "fbxzaad"
+power = 31
+modulo = 100
+k = 3
+hashValue = 32
+print(sol.subStrHash(s, power, modulo, k, hashValue))
