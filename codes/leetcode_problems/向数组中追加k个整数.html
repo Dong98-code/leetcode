@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var minimalKSum = function (nums, k) {
+            // let pre_sum = 0;
+            // nums.forEach(ele => {
+            //     pre_sum  += ele;
+            // })
+            // // return pre_sum
+            // // 求 加入k个不同的数之后， 和最小；
+            // 
+            nums.sort((a, b) => a - b); // 升序排列
+            // 找到不在数组中的最小的k个数-
+            let i = -1,
+                j = 0; // 两个指针， 分别指向最小的两个数， 计算两个数之间的差值
+            // nums[i] - nums[j]=0/1没有空隙 i = j + 1; j = i+ 1
+            let l = 0,
+                r = nums[j];
+            let m = nums.length;
+            let res = 0;
+            while (i < m && j < m && k > 0) {
+                if ((r - l) <= 1) {
+                    let tmp = j + 1;
+                    i = j;
+                    j = tmp;
+                    if (j >= m || i >= m) {
+                        break;
+                    }
+                    l = nums[i];
+                    r = nums[j];
+                } else {
+                    let tmp_num = l + 1;
+                    while (tmp_num < r) {
+                        k -= 1;
+                        res += tmp_num;
+                        if (k == 0) {
+                            break;
+                        }
+                        tmp_num += 1;
+                    }
+                    // 更新索引
+                    let tmp = j + 1;
+                    i = j;
+                    j = tmp;
+                    if (j >=m || i >= m) {
+                        break;
+                    }
+                    l = nums[i];
+                    r = nums[j];
+                }
+
+            }
+            // 假如此时 k > 0 ,已经超出最大值
+            // 假如此时 k > 0 ,已经超出最大值
+            let max_num = nums[m-1]+1;
+            let last_num = max_num + k-1;
+            return res + (max_num+last_num)*k/2;
+        };
+
+        console.log(minimalKSum(nums=[1000000],k=1000000));
+    </script>
+</body>
+
+</html>
