@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+
+        .center {
+            background-color: blue;
+            height: 800px;
+            /* 占据剩余空白地方的分数 */
+            flex: 1;
+        }
+
+        .left {
+            background-color: red;
+            height: 400px;
+            width: 200px;
+            /* left 放置在最左边 */
+            order: -1;
+        }
+
+        .right {
+            background-color: yellow;
+            height: 400px;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="center"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

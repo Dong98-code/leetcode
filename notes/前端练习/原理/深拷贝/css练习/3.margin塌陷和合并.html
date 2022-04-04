@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            /* position: absolute; */
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            /* margin-top: 100px; */
+        }
+
+        .child {
+            background-color: blue;
+            width: 50px;
+            height: 50px;
+            margin-top: 150px;
+            /*父元素会随着子元素向下塌陷 */
+            /* 
+            正常情况下,父级元素应该相对浏览器进行定位,子级相对父级定位。但由于margin的塌陷,父级相对浏览器定位.而子级没有相对父级定位,子级相对父级,就像坍塌了一样。
+             */
+        }
+
+
+        .div1 {
+            height: 200px;
+            margin: 20px 0;
+            background-color: red;
+        }
+
+        .div2 {
+            height: 100px;
+            margin: 10px 0;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 塌陷， 父子盒子 -->
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+    <!-- margin合并 -->
+    <!-- 两个兄弟元素在垂直方向上是margin是合并的，选取margin的最大值 -->
+    <div class="div1"></div>
+    <div class="div2"></div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        /* 1. 增加一个新的元素，设置clear both */
+        .box-wrapper {
+            border: 5px solid red;
+        }
+
+        .box-wrapper .box {
+            float: left;
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            background-color: green;
+        }
+
+        /* 通过前后添加为元素清除浮动
+         */
+        .clearfix:before,
+        .clearfix:after {
+            display: block;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 浮动的问题
+    脱离文档流使得 文档流中的父盒子塌陷 -->
+    <!-- clear:both , 两侧不允许浮动盒子 -->
+    <!-- 
+        作者：来个offer吧！！！！
+链接：https://www.nowcoder.com/discuss/642120?source_id=profile_create_nctrack&channel=-1
+来源：牛客网
+
+通过BFC的方式清除浮动
+
+position:absolute/fixed，不为 static 或 relative
+float:left/right
+display:inline-block，table-cell
+overflow:hidden，scroll，不为 visible
+     -->
+
+    <body>
+        <div class="box-wrapper clearfix">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <!-- <div style="clear:both;"></div> -->
+        </div>
+    </body>
+
+</body>
+
+</html>

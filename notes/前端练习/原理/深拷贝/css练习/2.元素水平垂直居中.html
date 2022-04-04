@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .wrapper {
+            height: 900px;
+            background-color: gray;
+            position: relative;
+        } */
+
+        /* .content {
+            width: 400px;
+            height: 400px;
+            background-color: red;
+        } */
+        /* .content { */
+            /* position: absolute;
+            left: 50%;
+            height: 50%; */
+            /* margin-left: -200px;
+            margin-top: -200px; */
+            /* transform, 相对于元素本身的大小调整 */
+            /* transform: translate(-50%, -50%); */
+            /* 3. margin 实现居中 */
+            /* left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+
+        } */
+
+        /* 4. flex设置 */
+        .wraper {
+            display: flex;
+            height: 900px;
+            background-color: gray;
+            align-items: center;
+            justify-content: center;
+        }
+        .content {
+            background-color: skyblue;
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.元素固定宽高 ，定位+负margin -->
+    <!-- 子绝父相 -->
+    <!-- 
+        1. 相对定位： 盒子相对于其原来的位置 发生偏移， 在文档流中并未发生偏移， 仍然占据原来的位置， 对文档流中其他元素的位置没有影响；偏移量；
+        2. 负margin 则移开的位置会被其他位置的文档流挤占
+     -->
+    <div class="wraper">
+        <div class="content"></div>
+    </div>
+
+    <!-- 2. 元素不固定宽高 那么就没有办法通过fumargin来调整元素的位置， transform -->
+    <!-- 
+        3. margin:auto
+        上面说了再正常的文档流当中w3c默认规定margin-top和margin-right为0，所以实现不了垂直居中，只有绝对定位的元素才可以，意思就是绝对定位之后如果设置了margin：auto,那么margin-top和margin-right不再为0,而是auto，同时需要设置top,bottom,left,right为0来找到父元素的位置，然后margin：auto会找到父元素的位置分配好上下左右外边距，从而实现水平垂直居中！
+     -->
+
+     <!-- 4. flex -->
+
+</body>
+
+</html>
