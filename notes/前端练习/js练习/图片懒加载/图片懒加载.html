@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            height: 450px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <img data-src="./fig/fig1.png" alt="懒加载">
+    <img data-src="./fig/fig2.png" alt="懒加载">
+    <img data-src="./fig/fig3.png" alt="懒加载">
+    <img data-src="./fig/fig4.png" alt="懒加载">
+
+</body>
+<script>
+    const imgs = document.getElementsByTagName('img');
+
+    function lazyLoad(imgs) {
+        // 视口高度
+        const clientH = document.documentElement.clientHeight;
+        const clientT = document.documentElement.scrollTop || document.body.scrollTop;
+        for (let i = 0; i < imgs.length; i++) {
+            if (clientH + clientT > imgs[i].offsetTop && !imgs[i].src) {
+                imgs[i].src = imgs[i].dataset.src;
+            }
+        }
+    }
+    lazyLoad(imgs);
+    // window.onscroll = () => lazyLoad(imgs);
+
+    function throttle(fn, delay) {
+        let timer = null;
+        return () => {
+            if (!timer) {
+                timer = setTimeout(() => {
+                    fn(imgs);
+                    timer = null;
+                }, delay)
+            }
+
+        }
+    }
+    window.onscroll = throttle(lazyLoad, 500);
+</script>
+
+</html>
