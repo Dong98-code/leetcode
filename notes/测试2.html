@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        data = [1, "s", true, null, NaN, function(a){return a}, {}, []]
+        const getType= function(Data) {
+            if (typeof Data !== 'object') {
+                // NaN 和 number
+                if (typeof Data === "number") {
+                    if (Number.isNaN(Data)) {
+                        return "NaN"
+                    }
+                }
+                return typeof Data // 1, "s", true,  NaN？
+            } else {
+                if (Array.isArray(Data)) {
+                    return 'Array';
+                }
+                // null {}
+                if (Data === null) {
+                    return 'null'
+                }
+                return 'object';
+            }
+        }
+        data.forEach(el => {
+            console.log(getType(el));
+        });
+    </script>
+</body>
+</html>

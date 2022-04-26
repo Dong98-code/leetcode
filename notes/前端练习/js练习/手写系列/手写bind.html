@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    Function.prototype._bind = function (ctx, ...args) {
+        // 保存 调用_bind的函数的this
+        const _self = this; // 调用_bind的函数
+        const newFunc = function (...rest) {
+            return _self.call(ctx, ...args, ...rest);
+        }
+        if (_self.prototype) {
+            // 复制源函数的prototype给newFn 一些情况下函数没有prototype，比如箭头函数
+            newFn.prototype = Object.create(_self.prototype);
+        }
+        return newFn
+    }
+</script>
+
+</html>
