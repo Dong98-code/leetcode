@@ -10,7 +10,7 @@ Promise.all = function (promises) {
         const res = [];
         let count = 0;
         const len = promises.length;
-        for (leti = 0; i < len; i++) {
+        for (let i = 0; i < len; i++) {
             // 可能为thenable对象，直接调用then
             Promise.resolve(promises[i]).then(data => {
                 res[i] = data;

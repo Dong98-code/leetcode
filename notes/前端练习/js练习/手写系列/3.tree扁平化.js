@@ -49,7 +49,7 @@ const treeToArray = function(tree) {
     return res;
 }
 
-// console.log(treeToArray(tree));
+console.log(treeToArray(tree));
 const getNameById = function (tree, id) {
     let res = -1;
     if (!tree) {
