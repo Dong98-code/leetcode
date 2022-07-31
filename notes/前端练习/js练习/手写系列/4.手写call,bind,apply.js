@@ -28,7 +28,7 @@ Function.prototype._call = function (ctx, ...args) {
     // 下面的this就是调用_call的函数foo  我们把this给对象o的属性fn 就是把函数foo赋值给了o.fn
     //给context新增一个独一无二的属性以免覆盖原有属性
     const key =Symbol() // 独一无二的属性；
-    o[key] = this;
+    o[key] = this; // 调用者为一个函数， this就是指向这个调用者， o[key]就是这个调用者
 
     const result = o[key](...args);
     delete o[key]; // 删除这个属性

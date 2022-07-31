@@ -22,16 +22,16 @@
             // 复制源函数的prototype给newFn 一些情况下函数没有prototype，比如箭头函数
             newFn.prototype = Object.create(_self.prototype);
         }
-        return newFn
+        return newFunc
     }
 
-    Function.prototype._bind = function () {
+    Function.prototype._bind = function (contex) {
         var fn = this;
-        var args = Array.prototye.slice.call(arguments);
-        var context = args.shift();
+        var args = Array.prototype.slice.call(arguments, 1)
 
         return function () {
-            return fn.apply(context, args.concat(Array.prototype.slice.call(arguments)));
+            let innerArgs = Array.prototype.slice.call(arguments) //获取全部的参数
+            return fn.apply(context, innerArgs);
         };
     };
 </script>
