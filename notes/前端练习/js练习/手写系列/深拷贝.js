@@ -65,7 +65,7 @@ const target2 = {
 function deepCloneV3(target, map=new Map()) {
     if (typeof target === "object") {
         let clone_target = Array.isArray(target) ? [] : {};
-        if (mao.get(target)) {
+        if (map.get(target)) {
             return map.get(target);
         }
         map.set(target, clone_target); // 原始的target和clone——target建立映射
@@ -115,4 +115,24 @@ function deepCloneV4(target, map = new WeakMap()) {// weekMap 弱引用类型，
     } else {
         return target;
     }
+}
+
+function deepCloneV5(obj, map = new WeakMap()) {
+    if (obj === null) return obj; // null直接返回
+    if (obj instanceof Date) return new Date(obj);
+    // 判断是不是对象 {}
+    if (typeof obj !== "object") {
+        return obj;
+    }
+    // 是对象 进行循环递归 ，注意循环引用
+    if (map.has(obj)) {
+        return map.get(obj);
+    }
+    let cloneObj = new obj.constructor();
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            cloneObj[key] = deepCloneV5(obj[key], map)
+        }
+    }
+    return cloneObj;
 }
