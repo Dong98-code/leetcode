@@ -1,9 +1,12 @@
-let randomValue = { name: "Lydia" }
-randomValue = 23
-
-// if (!typeof randomValue === "string") {
-// 	console.log("It's not a string!")
-// } else {
-// 	console.log("Yay it's a string!")
-// }
-console.log(randomValue);
+console.log(f1);
+console.log(f2);
+console.log(f3);
+function f1() {
+    console.log(111);
+}
+f2 = function () {
+    console.log(222);
+}
+const f3 = function () {
+    console.log(333);
+}
