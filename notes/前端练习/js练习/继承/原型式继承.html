@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let parent4 = {
+            name: "parent4",
+            friends: ["p1", "p2", "p3"],
+            getName: function () {
+                return this.name;
+            }
+        };
+
+        let person4 = Object.create(parent4);
+        console.log(person4);
+        person4.name = "tom";
+        person4.friends.push("jerry");
+        // console.log(parent4);
+        let person5 = Object.create(parent4);
+        console.log(person5.prototype === person4.prototype); // 二者的原型对象相同
+        // person5.friends.push("lucy");
+
+        // console.log(person4.name); // tom
+        // console.log(person4.name === person4.getName()); // true
+        // console.log(person5.name); // parent4
+        // console.log(person4.friends); // ["p1", "p2", "p3","jerry","lucy"]
+        // console.log(person5.friends); // ["p1", "p2", "p3","jerry","lucy"]
+    </script>
+</body>
+
+</html>

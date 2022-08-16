@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Parent() {
+        //     this.name = 'parent1';
+        //     this.play = [1, 2, 3],
+        //         this.fn = () => {
+        //             console.log(this);
+        //         }
+        // }
+        // var p2 = new Parent()
+        // p2.fn()
+        // console.log(p2, p1);
+        // Parent.prototype.name = "p2";
+        // function Child() {
+        //     this.type = 'child2';
+        // }
+        // Child.prototype = new Parent() 
+        // var p1 = new Parent();
+        // console.log(p1.name); // 先去实例身上找，实例身上找不到 根据原型链 到其原型对象向赵
+        // console.log(p1);
+        // var s1 = new Child();
+        // var s2 = new Child();
+        // console.log(s1);
+        // console.log(s2);
+
+        // ----------------------------- 构造函数继承
+        function Parent() {
+            this.name = 'parent1';
+        }
+
+        let res = Parent();
+        console.log(res); // 当作普通函数执行，并没有返回值
+        Parent.prototype.getName = function () {
+            return this.name;
+        }
+
+        function Child() {
+            this.name = 'child'
+            Parent.call(this); // 1
+
+        }
+
+        let child = new Child(); //执行构造函数，  1会执行Parent构造函数种的this.name, 然后使得name为p1
+        console.log(child); // 没问题
+        console.log(child.getName()); // 会报错
+    </script>
+</body>
+
+</html>
